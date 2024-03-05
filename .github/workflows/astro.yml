@@ -80,4 +80,4 @@ jobs:
       uses: google-github-actions/upload-cloud-storage@v2
       with:
         path: ${{ env.BUILD_PATH }}/dist
-        destination: ''
+        destination: code-craft-doc-site
