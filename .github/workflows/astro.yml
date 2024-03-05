@@ -76,7 +76,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: dist
-        path: ${{ env.BUILD_PATH }}
+        path: ${{ env.BUILD_PATH }}/dist
     - name: test
       run: ls 
     - id: auth
