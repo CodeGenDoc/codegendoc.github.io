@@ -60,7 +60,7 @@ jobs:
           ${{ steps.detect-package-manager.outputs.runner }} astro build
         working-directory: ${{ env.BUILD_PATH }}
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: ${{ env.BUILD_PATH }}/dist
 
@@ -72,7 +72,7 @@ jobs:
     - id: checkout
       uses: actions/checkout@v4
     - name: Download artifact
-      uses: actions/download-artifact@master
+      uses: actions/download-artifact@v4
       with:
         path: ${{ env.BUILD_PATH }}/dist
     - id: auth
@@ -84,5 +84,5 @@ jobs:
     - id: upload-folder
       uses: google-github-actions/upload-cloud-storage@v2
       with:
-        path: /dist
+        path: ${{ env.BUILD_PATH }}/dist
         destination: code-craft-doc-site
