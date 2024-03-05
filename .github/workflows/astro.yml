@@ -61,6 +61,10 @@ jobs:
             --site "${{ steps.pages.outputs.origin }}" \
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.BUILD_PATH }}/dist
 
   deploy:
     needs: build
@@ -69,7 +73,10 @@ jobs:
     steps:
     - id: checkout
       uses: actions/checkout@v4
-
+    - name: Download artifact
+      uses: actions/download-artifact@master
+      with:
+        path: ${{ env.BUILD_PATH }}/dist
     - id: auth
       uses: google-github-actions/auth@v2
       with:
@@ -79,5 +86,5 @@ jobs:
     - id: upload-folder
       uses: google-github-actions/upload-cloud-storage@v2
       with:
-        path: ${{ env.BUILD_PATH }}/dist
+        path: /dist
         destination: code-craft-doc-site
