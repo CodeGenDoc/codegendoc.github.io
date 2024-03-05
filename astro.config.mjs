@@ -1,9 +1,8 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
-export default defineConfig({
+import relativeLinks from 'astro-relative-links';
 
-  
-   site: 'https://lexingtonthemes.com',
-  integrations: [tailwind(),  sitemap()]
+export default defineConfig({
+  integrations: [relativeLinks(), tailwind(),  sitemap()]
 });
