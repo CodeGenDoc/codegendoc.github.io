@@ -57,9 +57,7 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro
         run: |
-          ${{ steps.detect-package-manager.outputs.runner }} astro build \
-          --site "https://storage.googleapis.com" \
-          --base "/code-craft-doc-site"
+          ${{ steps.detect-package-manager.outputs.runner }} astro build
         working-directory: ${{ env.BUILD_PATH }}
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -72,24 +70,24 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
-    - id: checkout
-      uses: actions/checkout@v4
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: dist
-        path: ${{ env.BUILD_PATH }}/dist
-    - name: test
-      run: ls 
-    - id: auth
-      uses: google-github-actions/auth@v2
-      with:
-        workload_identity_provider: projects/758304491983/locations/global/workloadIdentityPools/github/providers/code-craft-doc-site
-        service_account: side-deploy@codecraftdoc.iam.gserviceaccount.com
+      - id: checkout
+        uses: actions/checkout@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: ${{ env.BUILD_PATH }}/dist
+      - name: test
+        run: ls
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/758304491983/locations/global/workloadIdentityPools/github/providers/code-craft-doc-site
+          service_account: side-deploy@codecraftdoc.iam.gserviceaccount.com
 
-    - id: upload-folder
-      uses: google-github-actions/upload-cloud-storage@v2
-      with:
-        path: ${{ env.BUILD_PATH }}/dist
-        destination: code-craft-doc-site
-        parent: false
+      - id: upload-folder
+        uses: google-github-actions/upload-cloud-storage@v2
+        with:
+          path: ${{ env.BUILD_PATH }}/dist
+          destination: code-craft-doc-site
+          parent: false

@@ -1,0 +1,11 @@
+---
+import config from "../../../astro.config.mjs";
+
+const { href, ...rest } = Astro.props;
+
+const hrefWithBase = href?.startsWith?.("/") ? `${config.base}${href}` : href;
+---
+
+<a href={hrefWithBase} {...rest}>
+  <slot />
+</a>

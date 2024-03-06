@@ -1,3 +1,7 @@
+---
+import Link from "../global/Link.astro";
+---
+
 <section>
   <div
     class="flex relative justify-center lg:px-0 items-center lg:h-screen md:px-12 overflow-hidden"
@@ -54,11 +58,8 @@
             </div>
           </div>
         </div>
-        <form >
-
-          <div
-            class="space-y-6"
-          >
+        <form>
+          <div class="space-y-6">
             <div class="w-full flex flex-row gap-3">
               <div class="w-full">
                 <label class="sr-only" for="first_name">First name</label>
@@ -89,9 +90,11 @@
                 placeholder="Type here..."
               />
             </div><div class="col-span-full">
-              <label class="sr-only" for="company" name="company">Password</label>
+              <label class="sr-only" for="company" name="company"
+                >Password</label
+              >
               <input
-               id="company"
+                id="company"
                 name="company"
                 class="w-full focus:outline-none border py-3 appearance-none h-12 bg-gray-50 block border-gray-200 focus:bg-white focus:border-accent-500 focus:ring-accent-500 placeholder-gray-400 px-3 rounded-xl sm:text-sm text-accent-500"
                 placeholder="Type password here..."
@@ -108,17 +111,17 @@
                 <label
                   class="font-medium text-xs block leading-tight ml-2 text-gray-500"
                   for="remember-me"
-                  >Creating an account means you’re okay with our <a
+                  >Creating an account means you’re okay with our <Link
                     class="text-accent-500 hover:text-accent-400"
                     href="/terms"
                     >Terms of Service,
-                  </a><a
+                  </Link><Link
                     class="text-accent-500 hover:text-accent-400"
                     href="/privacy"
                     >Privacy Policy
-                  </a>, and our default <a
+                  </Link>, and our default <Link
                     class="text-accent-500 hover:text-accent-400"
-                    href="/notifications">Notification Settings.</a
+                    href="/notifications">Notification Settings.</Link
                   >
                 </label>
               </div>
@@ -129,9 +132,9 @@
               >
             </div><div class="space-y-4">
               <p class="font-medium text-sm leading-tight text-black">
-                Already a member? <a
+                Already a member? <Link
                   class="text-accent-500 hover:text-accent-400 ml-3"
-                  href="/login">Sign in</a
+                  href="/login">Sign in</Link
                 >
               </p><p class="font-medium text-xs leading-tight text-gray-500">
                 This site is protected by reCAPTCHA and the Google Privacy
