@@ -77,8 +77,6 @@ jobs:
         with:
           name: dist
           path: ${{ env.BUILD_PATH }}/dist
-      - name: test
-        run: cd ${{ env.BUILD_PATH }}/dist && ls
       - id: auth
         uses: google-github-actions/auth@v2
         with:
