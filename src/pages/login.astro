@@ -1,10 +1,20 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Login from "../components/Forms/Login.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import LoginView from "@components/Forms/Login.astro";
 
 ---
 
-
 <BaseLayout>
-  <Login />
+  <LoginView />
 </BaseLayout>
+<script>
+  if (location.hash && /^#([\w-.~%]+=[\w-.~%]+)+$/.test(location.hash)) {
+    const hashParameter = location.hash.split('&')
+      .map(part => part.split('=').map(decodeURIComponent))
+      .reduce((res, pair) => {
+        res[pair[0]] = pair[1]
+        return res
+      }, {})
+    hashParameter
+  }
+</script>
