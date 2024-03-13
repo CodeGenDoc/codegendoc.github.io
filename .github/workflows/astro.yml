@@ -65,7 +65,12 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
       - name: 'Create env file'
-        run: echo "$GITHUB_CONTEXT"
+        env:
+          VARS: ${{ toJson(vars) }}
+          ENV: ${{ toJson(env) }}
+        run: |
+          echo "$VARS"
+          echo "$ENV"
       - name: Build with Astro
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
